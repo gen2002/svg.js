@@ -2,8 +2,6 @@ import { registerMethods } from '../utils/methods.js'
 import Animator from './Animator.js'
 import { globals } from '../utils/window.js'
 
-var time = globals.window.performance || Date
-
 var makeSchedule = function (runnerInfo) {
   var start = runnerInfo.start
   var duration = runnerInfo.runner.duration()
@@ -15,7 +13,7 @@ export default class Timeline {
   // Construct a new timeline on the given element
   constructor () {
     this._timeSource = function () {
-      return time.now()
+      return (globals.window.performance || globals.window.Date).now()
     }
 
     this._dispatcher = globals.document.createElement('div')
